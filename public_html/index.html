@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 
+         | © 2010 Unleashed! A Cappella
+        -->
+        <!-- Meta -->
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>Unleashed! A Cappella @ The University Of Washington</title>
+        <meta name="keywords"           content="Unleashed,UW,A Cappella,Home">
+        <meta name="description"        content="UW Unleashed A Cappella is an a cappella group at the University of Washington open to all students and non-students in the Seattle area.">
+        <meta name="author"             content="Unleashed A Cappella">
+    
+        <link rel="icon" type="image/png" href="/unleashd/img/favicon.png">
+        <link rel="stylesheet" type="text/css" href="/unleashd/css/home.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="identity" id="logged-in-user"></div>
+            <div class="hgroup">
+                <a href="/unleashd/">
+                    <h1>Unleashed! A Cappella</h1>
+                    <h2>@ The University Of Washington</h2>
+                </a>
+                <div class="nav">
+                    <ul>
+                        <li><a href="/unleashd/schedule/">Schedule</a></li>
+                        <li><a href="/unleashd/recordings/">Recordings</a></li>
+                        <li><a href="/unleashd/join-us/">Join Us!</a></li>
+                        <li><a href="/unleashd/official-stuff/">Official Stuff</a></li>
+                        <li><a href="/unleashd/members/">Members</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="content">
+            <div id="slideshow">
+                <div id="video">
+                  <object width="100%" height="100%">
+                    <param name="movie" value="/unleashd/youtube/v/2pdreBNF1Ec"></param>
+                    <param name="allowFullScreen" value="true"></param>
+                    <param name="allowscriptaccess" value="always"></param>
+                    <embed src="/unleashd/youtube/v/2pdreBNF1Ec"
+                           type="application/x-shockwave-flash"
+                           allowscriptaccess="always"
+                           allowfullscreen="true"
+                           width="100%" height="100%"></embed>
+                  </object>
+                </div>
+                <p class="caption">Orinoco Flow, performed at our Winter 2009 concert.</p>
+            </div>
+        
+            <div id="welcome" class="content">
+                <p><b>Hello!  Welcome to the homepage of Unleashed!</b></p>
+                <p>
+                    <i>
+                        We are the premier a cappella group at the <a href="http://www.washington.edu">University of Washington</a>,
+                        located just north of beautiful downtown Seattle.
+                    </i>
+                </p>
+
+                <p>
+                    Our group was founded in 1999, for all who love singing a cappella and
+                    having fun!  Everyone who is interested may join, including graduate
+                    students, alumni, and non-students.
+                </p>
+
+                <p>
+                    Traditionally, we have two concerts every year, a Winter and a Spring
+                    concert.  In addition, we have other fun events throughout the year, including:
+                    <ul>
+                        <li>Caroling in Downtown Seattle (<a href="http://www.figgypuddingpmsc.org/figgypuddingpmsc.org/Senior_pages/figgyhome2.htm">Figgy Pudding</a>)</li>
+                        <li>Performances within the community, such as at retirement homes or hospitals.</li>
+                        <li>Participation at school events like Dawg Daze.</li>
+                        <li>Retreats and parties.</li>
+                    </ul>
+                </p>
+            </div>
+            
+            <div id="buttons">
+                <div id="youtube" class="button">
+                    <a href="http://www.youtube.com/uwunleashed" rel="external">Our YouTube Page.</a>
+                </div>
+                <div id="facebook" class="button">
+                    <a href="http://www.facebook.com/group.php?gid=2224589215" rel="external">Our Facebook Page.</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><a href="mailto:unleashd@u.washington.edu">unleashd@u.washington.edu</a></p>
+        </div>
+        
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            function resize_video() {
+              var height = Math.round(($("#video").width() / 375) * 240);
+              $("#video").height(height);
+            };
+            resize_video();
+            $(window).resize(resize_video);
+        </script>
+    </body>
+</html>

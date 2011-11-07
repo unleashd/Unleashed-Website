@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 
+         | © 2010 Unleashed! A Cappella
+        -->
+        <!-- Meta -->
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>Unleashed! A Cappella - Schedule</title>
+        <meta name="keywords"           content="Unleashed,UW,A Cappella,Schedule">
+        <meta name="description"        content="">
+        <meta name="author"             content="Unleashed A Cappella, Sean Anastasi">
+    
+        <link rel="icon" type="image/png" href="/unleashd/img/favicon.png">
+        <link rel="stylesheet" type="text/css" href="/unleashd/css/schedule.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="identity" id="logged-in-user"></div>
+            <div class="hgroup">
+                <a href="/unleashd/">
+                    <h1>Unleashed! A Cappella</h1>
+                    <h2>@ The University Of Washington</h2>
+                </a>
+                <div class="nav">
+                    <ul>
+                        <li><a class="current" href="/unleashd/schedule/">Schedule</a></li>
+                        <li><a href="/unleashd/recordings/">Recordings</a></li>
+                        <li><a href="/unleashd/join-us/">Join Us!</a></li>
+                        <li><a href="/unleashd/official-stuff/">Official Stuff</a></li>
+                        <li><a href="https://students.washington.edu/unleashd/members/">Members</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="content">
+            <div id="calendar">
+                <iframe src="https://www.google.com/calendar/b/0/embed?title=Unleashed%20A%20Cappella%20Events&amp;height=300&amp;wkst=1&amp;bgcolor=%23C3D9FF&amp;src=unleashd%25u.washington.edu%40gtempaccount.com&amp;color=%2329527A&amp;ctz=America%2FLos_Angeles" style=" border-width:0 " width="350" height="300" frameborder="0" scrolling="no"></iframe>
+            </div>
+            <div class="content">
+                <p>
+                    Unleashed regularly meets every Wednesday from 7:30 to 9:30 while the
+                    University of Washington is in session.  We typically have two concerts,
+                    one in the winter after autumn quarter, and one in the spring.
+                </p>
+                <p>
+                    During the renovation of the HUB, we'll be meeting primarily in
+                    room 313 of the 
+                    <a href="http://www.washington.edu/home/maps/northcentral.html?MUS">Music Building.</a>
+                </p>
+            </div>
+            
+            <table id="upcoming-events">
+                <tr itemscope itemtype="http://data-vocabulary.org/Event">
+                    <th class="date">
+                        <time itemprop="startDate" datetime="2011-09-28 07:30:00">Wednesday, September 28th</time>
+                        <time itemprop="endDate" datetime="2011-09-28 09:30:00"></time>
+                    </th>
+                    <td class="time">
+                        7:30-9:30pm
+                    </td>
+                    <td class="desc">
+                        <a class="summary">First Rehearsal!</a>
+                        <div class="rest">
+                            <span class="location" itemprop="location">MUS 313</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+                
+<!--%table#upcoming-events-->
+<!--    - if @calendar-->
+<!--        - @calendar.upcoming(Date.today - 1).each do |event|-->
+<!--            %tr(itemscope itemtype="http://data-vocabulary.org/Event")-->
+<!--                %th.date{:class => ("today" if event.today?)}-->
+<!--                    %time(itemprop="startDate" datetime="#{event.dtstart}")= event.date-->
+<!--                    %time(itemprop="endDate" datetime="#{event.dtend}")-->
+<!--                %td.time= event.timespan-->
+<!--                %td.desc-->
+<!--                    %a.summary{:href => event.gcal_link, :itemprop => 'url'}-->
+<!--                        %span(itemprop="summary")= event.summary-->
+<!--                    .rest-->
+<!--                        - if event.location and !event.location.empty?-->
+<!--                            %span.location(itemprop="location")= event.location-->
+<!--                        - if event.description and !event.description.empty?-->
+<!--                            %p(itemprop="description")= event.description-->
+<!--    - else-->
+<!--        %p.error Error loading schedule.-->
+
+        </div>
+        
+        <div class="footer">
+            <p><a href="mailto:unleashd@u.washington.edu">unleashd@u.washington.edu</a></p>
+        </div>
+    </body>
+</html>

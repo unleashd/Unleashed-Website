@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 
+         | © 2010 Unleashed! A Cappella
+        -->
+        <!-- Meta -->
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>Unleashed! A Cappella - Edit Users</title>
+        <meta name="keywords"           content="Unleashed,UW,A Cappella,Members">
+        <meta name="description"        content="UW Unleashed A Cappella User Editing Page">
+        <meta name="author"             content="Unleashed A Cappella">
+    
+        <link rel="icon" type="image/png" href="/unleashd/img/favicon.png">
+        <link rel="stylesheet" type="text/css" href="/unleashd/css/members.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="identity" id="logged-in-user"></div>
+            <div class="hgroup">
+                <a href="/unleashd/">
+                    <h1>Unleashed! A Cappella</h1>
+                    <h2>@ The University Of Washington</h2>
+                </a>
+                <div class="nav">
+                    <ul>
+                        <li><a href="/unleashd/schedule/">Schedule</a></li>
+                        <li><a href="/unleashd/recordings/">Recordings</a></li>
+                        <li><a href="/unleashd/join-us/">Join Us!</a></li>
+                        <li><a href="/unleashd/official-stuff/">Official Stuff</a></li>
+                        <li><a class="current" href="https://students.washington.edu/unleashd/members/">Members</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="content" class="content">
+            <h3>Bulk New User Upload</h3>
+            <p>One username (UWNetId) per line.</p>
+            <textarea id="bulk-user-add"></textarea>
+        
+            <h3>Add/Edit Members</h3>
+            <div id="load-status" style="padding: 10px; font-size: 15pt; width: 400px; margin: auto; text-align: center;">
+                <img src="/unleashd/img/throbber.gif" />
+                <p>Loading member list.</p>
+            </div>
+            
+            <table id="member-list" style="display:none">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <th>Username</th>
+                        <th>Auth Type</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Admin?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <p><a href="mailto:unleashd@u.washington.edu">unleashd@u.washington.edu</a></p>
+        </div>
+        
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+        <script type="text/javascript" src="/unleashd/js/login.js"></script>
+        <script type="text/javascript" src="/unleashd/js/members.js"></script>
+        <script type="text/javascript">
+            unleashd.ifAuthenticated({
+                yes: function(user) {
+                    unleashd.loadMembers({
+                        success: function(members) {
+                            $('#load-status').hide();
+                            unleashd.renderMembers(members);
+                            $('#member-list').show();
+                        },
+                        failure: function() {
+                            $('#load-status').addClass('error');
+                            $('#load-status').html("Unable to load members.");
+                        }
+                    });
+                },
+                no: function() {
+                    window.location.replace("/unleashd/login/");
+                }
+            });
+        </script>
+    </body>
+</html>

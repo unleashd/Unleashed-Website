@@ -1,0 +1,3 @@
+This directory is protected by UWNetId authentication because of the configuration
+in the file '.htaccess'.  This directory is used as a target by the login.cgi script 
+and shouldn't be removed even though it may appear basically empty.

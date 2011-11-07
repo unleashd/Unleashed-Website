@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 
+         | © 2010 Unleashed! A Cappella
+        -->
+        <!-- Meta -->
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>Unleashed! A Cappella - Log in to View Content</title>
+        <meta name="keywords"           content="Unleashed,UW,A Cappella,Members">
+        <meta name="description"        content="UW Unleashed A Cappella Members' Login Page">
+        <meta name="author"             content="Unleashed A Cappella">
+    
+        <link rel="icon" type="image/png" href="/unleashd/img/favicon.png">
+        <link rel="stylesheet" type="text/css" href="/unleashd/css/login.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="identity" id="logged-in-user"></div>
+            <div class="hgroup">
+                <a href="/unleashd/">
+                    <h1>Unleashed! A Cappella</h1>
+                    <h2>@ The University Of Washington</h2>
+                </a>
+                <div class="nav">
+                    <ul>
+                        <li><a href="/unleashd/schedule/">Schedule</a></li>
+                        <li><a href="/unleashd/recordings/">Recordings</a></li>
+                        <li><a href="/unleashd/join-us/">Join Us!</a></li>
+                        <li><a href="/unleashd/official-stuff/">Official Stuff</a></li>
+                        <li><a class="current" href="https://students.washington.edu/unleashd/members/">Members</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="content">
+            <div class="content">
+                <h3>You need to be authorized by us to view this page.</h3>
+
+                <form id="login-form" method="post">
+                    <label>
+                        Username:
+                        <input type="text" id="username" name="username" />
+                    </label>
+                    <label>
+                        Password:
+                        <input type="password" id="password" name="password" />
+                    </label>
+                    <button type="submit">Log In</button>
+                </form>
+            </div>
+            <div class="content how-to">
+                <div id="errors"></div>
+                <p>If you are a UW student you can log in with your UW NetId, otherwise you can log in with a username and password we've assigned to you.</p>
+                <p>Email <a href="mailto:unleashd@u.washington.edu">unleashd@u.washington.edu</a> if you have problems logging in.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><a href="mailto:unleashd@u.washington.edu">unleashd@u.washington.edu</a></p>
+        </div>
+        
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+        <script type="text/javascript" src="/unleashd/js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="/unleashd/js/login.js"></script>
+        <script type="text/javascript">
+            $('#login-form').submit(function(e) {
+                e.preventDefault();
+                var username = $('#username').val();
+                var password = $('#password').val();
+                unleashd.login(username, password, {
+                    success: function() {
+                        document.location.replace('/unleashd/members/');
+                    },
+                    failure: function() {
+                        $('#errors').html('<p class="error">Incorrect username or password.</p>');
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

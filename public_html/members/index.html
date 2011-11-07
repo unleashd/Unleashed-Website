@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- 
+         | © 2010 Unleashed! A Cappella
+        -->
+        <!-- Meta -->
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>Unleashed! A Cappella - Members Only</title>
+        <meta name="keywords"           content="Unleashed,UW,A Cappella,Members">
+        <meta name="description"        content="UW Unleashed A Cappella Members' Page">
+        <meta name="author"             content="Unleashed A Cappella">
+    
+        <link rel="icon" type="image/png" href="/unleashd/img/favicon.png">
+        <link rel="stylesheet" type="text/css" href="/unleashd/css/members.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="identity" id="logged-in-user"></div>
+            <div class="hgroup">
+                <a href="/unleashd/">
+                    <h1>Unleashed! A Cappella</h1>
+                    <h2>@ The University Of Washington</h2>
+                </a>
+                <div class="nav">
+                    <ul>
+                        <li><a href="/unleashd/schedule/">Schedule</a></li>
+                        <li><a href="/unleashd/recordings/">Recordings</a></li>
+                        <li><a href="/unleashd/join-us/">Join Us!</a></li>
+                        <li><a href="/unleashd/official-stuff/">Official Stuff</a></li>
+                        <li><a class="current" href="https://students.washington.edu/unleashd/members/">Members</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="content">
+            <a id="add-remove-members-link" href="/unleashd/members/edit/">Add/Remove Members</a>
+            
+            <h2>Sheet Music</h2>
+        
+            <div id="load-status" style="padding: 10px; font-size: 15pt; width: 400px; margin: auto; text-align: center;">
+                <img src="/unleashd/img/throbber.gif" />
+                <p>Loading sheet music.</p>
+            </div>
+            
+            <table id="sheet-music" style="display:none">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <p><a href="mailto:unleashd@u.washington.edu">unleashd@u.washington.edu</a></p>
+        </div>
+        
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+        <script type="text/javascript" src="/unleashd/js/login.js"></script>
+        <script type="text/javascript" src="/unleashd/js/sheet-music.js"></script>
+        <script type="text/javascript">
+            unleashd.ifAuthenticated({
+                yes: function(user) {
+                    if (user.is_admin) {
+                        $('#add-remove-members-link').show();
+                    }
+                
+                    unleashd.loadSheetMusic({
+                        success: function(pieces) {
+                            if (pieces.length > 0) {
+                                $('#load-status').hide();
+                                unleashd.renderSheetMusic(pieces);
+                                $('#sheet-music').show();
+                            } else {
+                                $('#load-status').html("<b>There doesn't seem to be any sheet music right now.</b>");
+                            }
+                        },
+                        failure: function() {
+                            $('#load-status').addClass('error');
+                            $('#load-status').html("Unable to load sheet music.");
+                        }
+                    });
+                },
+                no: function() {
+                    window.location.replace("/unleashd/login/");
+                }
+            });
+        </script>
+    </body>
+</html>

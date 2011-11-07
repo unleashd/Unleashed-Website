@@ -1,0 +1,52 @@
+#-------------------------------------------------------------------------------
+#
+# Apache acces control and configuration file.
+#
+#-------------------------------------------------------------------------------
+RewriteEngine On
+
+#
+# Deny access to some files.
+#
+RewriteRule ^passwords$ [F]
+RewriteRule ^groups$ [F]
+RewriteRule ^access_log$ [F]
+
+#
+# Use a local redirect to youtube to avoid HTTPS warning messages about insecure content.
+#
+RewriteRule ^youtube/(.*)$ https://www.youtube.com/$1 [L]
+
+#
+# Rewrite some URLs for convenience sake.
+#
+RewriteRule ^google838a8cdff7657412.html$ /unleashd/.google-verification
+RewriteRule ^BingSiteAuth.xml$ /unleashd/.bing-verification
+
+#
+# Force login and members pages to be HTTPS only.
+#
+RewriteCond %{HTTPS} off
+RewriteRule ^members/(.*)$ https://%{HTTP_HOST}%{REQUEST_URI}
+
+#
+# If we get a non-empty Authorization header, set an environment variable so we
+# can use it in our login CGI scripts.
+#
+RewriteCond %{HTTP:Authorization} (.+)
+RewriteRule ^ - [e=HTTP_AUTHORIZATION:%1,L]
+
+
+#
+# Turn off ETags to improve page size.
+#
+FileETag None
+Header unset ETag
+
+#
+# Set far future expiration headers for static files.
+#
+<FilesMatch "\.(jpg|jpeg|png|git|js|css|swf)$">
+    Header set Cache-Control "max-age=290304000, public"
+</FilesMatch>
+

@@ -1,0 +1,7 @@
+RewriteEngine on
+
+#
+# Don't display the directory index of this directory just to be safe.
+#
+RewriteRule ^$ [F]
+
