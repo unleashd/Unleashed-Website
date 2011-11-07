@@ -1,0 +1,4 @@
+#! /bin/sh
+
+$HOME/.mysql/bin/mysqld_safe &
+$HOME/.mysql/bin/mysqladmin -u root -p version

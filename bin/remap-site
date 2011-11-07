@@ -1,0 +1,11 @@
+#! /bin/sh
+#
+# Recompute the sitemap and send it to Google.
+# Run by cron every day.
+#
+
+CWD=`dirname $0`
+CONFIG_FILE=$HOME/.etc/sitemap_config.xml
+
+$CWD/sitemap_gen.py --config=$CONFIG_FILE
+

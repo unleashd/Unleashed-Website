@@ -1,0 +1,3 @@
+#! /bin/sh
+
+$HOME/.mysql/bin/mysql $* -p unleashed

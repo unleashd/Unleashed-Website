@@ -1,0 +1,9 @@
+#! /bin/sh
+#
+# Clear the log file.
+# (Run by cron every Sunday at midnight).
+#
+LOGFILE=access_log
+
+echo -n '' >"$HOME/public_html/$LOGFILE"
+

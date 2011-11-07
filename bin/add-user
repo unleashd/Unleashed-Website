@@ -1,0 +1,17 @@
+#! /usr/bin/env ruby
+
+ENV['GEM_PATH'] = "/dw21/d42/unleashd/.gem" # Set the Rubygems path for local gems.
+$LOAD_PATH << "/dw21/d42/unleashd/ajax/lib" # Set the regular load path for local files.
+
+raise "Username required" unless ARGV[0]    
+
+require 'database'
+Database.connect!
+
+require 'user'
+user = User.new
+user.username = ARGV[0]
+user.auth_type = 'uw'
+
+puts "Creating user: #{user.username}"
+user.save!

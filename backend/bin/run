@@ -1,0 +1,15 @@
+#! /bin/sh
+#
+# Start up the backend server in production mode.
+#
+app_dir="$(dirname $0)/.."
+var_dir="$app_dir/var"
+
+mkdir -p "$var_dir"
+
+pid_file="$var_dir/app.pid"
+log_file="$var_dir/app.log"
+
+kill -9 "$(cat "$pid_file")"
+/usr/local/bin/ruby "$app_dir/app.rb" -e production >"$log_file" 2>&1 &
+echo "$!" >"$pid_file"

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+SECRET=`echo -n U29uZ0IhcmQK | base64 --decode`
+UP=`$HOME/.mysql/bin/mysqladmin ping -uroot -p$SECRET`
+if [ ! "$UP" = "mysqld is alive" ]; then
+	echo "Restarting mysql daemon."
+	$HOME/.mysql/bin/mysqld_safe &
+fi
+
